@@ -1,0 +1,77 @@
+@import url("normalize.css");
+
+body, html {
+  width:100%;
+}
+
+body {
+  font-family:"Helvetica","Arial",sans-serif;
+  font-size:100%;
+}
+
+#container {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+}
+
+#main {
+  width:100%;
+  height:100%;
+}
+
+header {
+  width:100%;
+  height:64px;
+  background:#444;
+}
+
+#chat_window {
+  position:absolute;
+  left:0;
+  top:64px;
+  bottom:48px;
+  width:100%;
+}
+
+#message_bar {
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:48px;
+  background:#444;
+}
+
+#message_form label {
+  margin:0;
+  padding:0 0 0 10px;
+  line-height:48px;
+  color:#ddd;
+}
+
+#blackout {
+  position:fixed;
+  left:0;
+  top:0;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  background:#444;
+  background:rgba(0,0,0,0.85);
+  z-index:100;
+}
+
+#user_info {
+  position:absolute;
+  left:0;
+  top:0;
+  margin:0;
+  padding:10px;
+  background:#ddd;
+  border-radius:8px;
+  visibility:hidden;
+}

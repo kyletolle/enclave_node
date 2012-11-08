@@ -2,6 +2,33 @@
 <html lang="en">
   <head>
     <title>Chat Demo</title>
+    <link rel="stylesheet" href="css/chat.css" />
   </head>
-  <body></body>
+  <body>
+    <div id="container">
+      <div id="main" role="main">
+        <header></header>
+        <div id="chat_window"></div>
+        <div id="message_bar">
+          <form id="message_form">
+            <label for="message">Message:</label>
+            <input type="text" name="message" id="message" />
+            <input type="submit" name="submit" id="submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="blackout">
+      <div id="user_info">
+        <form id="user_form">
+          <p id="user_error"></p>
+          <label for="user_name">Name</label>
+          <input type="text" name="user_name" id="user_name" />
+          <input type="submit" name="user_submit" id="user_submit" />
+        </form>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+  </body>
 </html>
