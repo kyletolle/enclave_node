@@ -179,14 +179,17 @@ Backbone.View.prototype.close = function () {
     submitMessage: function (e) {
       e.preventDefault();
 
+      var messageInput = $('#message');
+      var messageText = messageInput.val();
+
       chat.emit('message', {
-        message: $('#message').val(),
+        message: messageText,
         timestamp: +(new Date()),
         room: app.models.user.getCurrent()
       });
 
       var room = app.models.rooms.where({name: app.models.user.getCurrent()})[0];
-      room.addToBuffer({user: app.models.user.get('name'), content: $('#message').val()});
+      room.addToBuffer({user: app.models.user.get('name'), content: messageText});
 
       $('#message').val('').focus();
     }
