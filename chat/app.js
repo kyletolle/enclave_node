@@ -47,7 +47,8 @@ var groupChat = io
       if (users.indexOf(name) == -1) {
         users.push(name);
         socket.set('nick', name, function () {
-          socket.emit('ready');
+          socket.emit('ready', name);
+          socket.broadcast.emit('connected', {user: name});
         });
       } else {
         socket.emit('name_error');
@@ -56,6 +57,7 @@ var groupChat = io
 
     socket.on('join', function (roomName) {
       socket.join(roomName);
+      socket.emit('joined', roomName);
     });
 
     socket.on('leave', function (roomName) {
@@ -64,18 +66,19 @@ var groupChat = io
 
     socket.on('message', function (data) {
       var msg = {
-        message: safeReplace(data.message),
+        content: safeReplace(data.message),
         timestamp: data.timestamp,
-        user: {
-          id: socket.id
-        }
+        room: data.room
       };
 
       socket.get('nick', function (err, name) {
-        msg.user.name = name;
+        msg.user = name;
       });
 
-      io.sockets.in(data.room).broadcast.emit('message', msg);
+      var currentRoom = '/chat/' + data.room;
+
+      //io.sockets.in(currentRoom).emit('message', msg);
+      socket.broadcast.emit('message', msg);
     });
 
     socket.on('list_users', function (room) {
@@ -92,5 +95,16 @@ var groupChat = io
 
     socket.on('system', function (data) {
       //io.sockets.in(data.room).emit();
+    });
+
+    socket.on('disconnect', function () {
+      var msg = {};
+
+      socket.get('nick', function (err, name) {
+        msg.user = name;
+        users.splice(users.indexOf(name), 1);
+      });
+
+      socket.broadcast.emit('disconnected', msg);
     });
   });

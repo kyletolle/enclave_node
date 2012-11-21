@@ -28,12 +28,69 @@ header {
   background:#444;
 }
 
-#chat_window {
+#content {
+  margin:0;
+  padding:0;
   position:absolute;
   left:0;
   top:64px;
+  bottom:0;
+  width:100%;
+  background:#eee;
+}
+
+.message {
+  margin:0;
+  padding:0;
+  width:100%;
+  border-bottom:1px dashed #444;
+}
+
+.message_banner {
+  margin:0;
+  padding:0;
+  width:100%;
+  background:#ddd;
+  color:#444;
+}
+
+.message_content {
+  margin:0;
+  padding:0;
+  width:100%;
+  background:#eee;
+  color:#444;
+}
+
+#chat_window {
+  position:absolute;
+  left:0;
+  top:0;
   bottom:48px;
   width:100%;
+}
+
+#user_list {
+  margin:0;
+  padding:0;
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:128px;
+  background:#111;
+}
+
+#messages {
+  margin:0;
+  padding:0;
+  position:absolute;
+  left:128px;
+  top:0;
+  bottom:0;
+  right:0;
+  overflow:scroll;
+  webkit-overflow-scrolling:touch;
 }
 
 #message_bar {
@@ -73,5 +130,4 @@ header {
   padding:10px;
   background:#ddd;
   border-radius:8px;
-  visibility:hidden;
 }
